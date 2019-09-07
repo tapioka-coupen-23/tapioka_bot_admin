@@ -97,8 +97,9 @@ class StoreController extends Controller
             $store->city_id = $request->get('city_id') ?? 111;
             $store->lat = $request->get('lat') ?? 111;
             $store->lon = $request->get('lon') ?? 111;
+            $store->deleted_at = null;
             $store->save();
-            
+
             if ($request->hasFile('thumbnail_filename')) {
                 if (!empty($image)) {
                     // imageの差し替え
