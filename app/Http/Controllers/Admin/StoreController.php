@@ -63,18 +63,14 @@ class StoreController extends Controller
     public function update(Request $request, Store $store=null)
     {
         $validator = Validator::make($request->all(), [
-            'display_name' => 'required|string|max:60',
-            'seo_name' => 'required|string|max:60',
-            'description' => 'string|nullable|max:15000',
-            'order_weight' => 'required|integer|between:0,999',
-            'thumbnail_filename' => 'image|max:92160|dimensions:min_width=1200,min_height=675',
-            'image_alt' => 'string|nullable|max:100',
-            'tags' => 'array',
+            'name' => 'required|string|max:60',
+            'url' => 'required|url|string|max:60',
+            'description' => 'string|nullable|max:10000',
         ]);
 
-        $validator->sometimes(['thumbnail_filename'], 'required', function ($input) use ($request){
-            return $request->method() == "PUT";
-        });
+//        $validator->sometimes(['thumbnail_filename'], 'required', function ($input) use ($request){
+//            return $request->method() == "PUT";
+//        });
 
         if ($validator->fails()) {
             return redirect()->back()
@@ -89,17 +85,22 @@ class StoreController extends Controller
                 $store = new Store;
             }
 
-            $store->display_name = $request->get('display_name');
-            $store->seo_name = $request->get('seo_name');
-            $store->description = convertEOL($request->get('description'));
-            $store->order_weight = $request->get('order_weight');
+            $store->name = $request->get('name');
+            $store->url = $request->get('url');
+            $store->description = $request->get('description');
+            $store->prefecture_id = $request->get('prefecture_id') ?? 13;
+            $store->address1 = $request->get('address1') ?? "";
+            $store->address2 = $request->get('address2') ?? "";
+            $store->tel_num = $request->get('tel_num') ?? "";
+            $store->post_code = $request->get('post_code') ?? "";
+            $store->address_building = $request->get('address_building') ?? "";
+            $store->city_id = $request->get('city_id') ?? 111;
+            $store->lat = $request->get('lat') ?? 111;
+            $store->lon = $request->get('lon') ?? 111;
+            $store->deleted_at = null;
             $store->save();
 
-            // イメージの更新
-            $image = Image::getStoreImage($store->id);
-
             if ($request->hasFile('thumbnail_filename')) {
-                self::coverImageConvert($request->thumbnail_filename->getPathname());
                 if (!empty($image)) {
                     // imageの差し替え
                     $image->delete();
@@ -112,14 +113,6 @@ class StoreController extends Controller
                 $image->store_id = $store->id;
                 $image->save();
             }
-            // タグの更新
-            if (empty($request->get('tags'))) {
-                $store->tags()->detach();
-            } else {
-                $store->tags()->sync($request->get('tags'));
-            }
-            // 操作ログの登録
-            $this->storeOperationLog($store->id);
         } catch (Exception $e) {
             DB::rollback();
             return redirect()->route('admin.stores.edit')->with(['status' => false, 'message' => 'データの更新に失敗しました。システム管理者に問い合わせください。']);
