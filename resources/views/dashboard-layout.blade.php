@@ -21,7 +21,7 @@
     <div class="sidebar">
       <nav class="sidebar-nav ps">
         <ul class="nav">
-          <li class="nav-item  "> <a class="nav-link " href="https://coreui.io/docs/migration/">
+          <li class="nav-item  "> <a class="nav-link " href="/admin">
 Home
 </a>
             <ul class="nav-dropdown-items"> </ul>
@@ -36,7 +36,7 @@ Coupon
 </a>
             <ul class="nav-dropdown-items"> </ul>
           </li>
-          <li class="nav-item  "> <a class="nav-link " href="https://coreui.io/docs/migration/">
+          <li class="nav-item  "> <a class="nav-link " href="/admin/users">
 Users
 </a>
             <ul class="nav-dropdown-items"> </ul>

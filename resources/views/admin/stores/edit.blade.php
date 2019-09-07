@@ -3,6 +3,7 @@
 @extends('dashboard-layout')
 
 @section('content')
+    <div class="container" style="background-color: white; margin-top: 100px; padding: 30px;">
     @if(!empty($store))
         <form action="{{ route('admin.stores.update', [$store->id]) }}" method="patch">
     @else
@@ -18,8 +19,9 @@
             </div>
             <div class="form-group">
                 <label class="col-3">説明</label>
-                <textarea class="form-control">{{ !empty($store) ? old('description', $store->description) : old('description') }}</textarea>
+                <textarea class="form-control col-10">{{ !empty($store) ? old('description', $store->description) : old('description') }}</textarea>
             </div>
             <button type="submit" class="btn btn-primary">保存</button>
         </form>
+    </div>
 @endsection
