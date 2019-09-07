@@ -41,3 +41,5 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
     Route::patch('coupons/{coupon?}', 'CouponController@update')->name('coupons.update');
     Route::put('coupons/{coupon?}', 'CouponController@update')->name('coupons.create.exec');
 });
+
+Route::get('/coupons/{coupon?}', 'CouponController@detail')->name('coupons.detail');
