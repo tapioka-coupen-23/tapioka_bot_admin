@@ -16,7 +16,7 @@ class CreateCouponsTable extends Migration
         Schema::create('coupons', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedBigInteger('store_id');
-            $table->string('qr_code');
+            $table->text('qr_code');
             $table->string('url');
             $table->string('name');
             $table->string('description');

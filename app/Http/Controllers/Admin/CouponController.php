@@ -9,6 +9,8 @@ use App\Store;
 use App\Image;
 use Validator;
 use DB;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+
 
 class CouponController extends Controller
 {
@@ -82,13 +84,16 @@ class CouponController extends Controller
             }
             $coupon->store_id = $request->store_id;
             $coupon->name = $request->get('name');
-            $coupon->description = $request->get('description');
+            $coupon->description = $request->get('description') ?? "";
             $coupon->url = "";
             $coupon->qr_code = "";
             $coupon->deleted_at = null;
             $coupon->save();
+            $coupon->url = route('coupons.detail', [$coupon->id]);
+            $src = base64_encode(QrCode::format('png')->size(100)->generate($coupon->url));
 
-            
+            $coupon->qr_code = $src;
+            $coupon->save();
 
             if ($request->hasFile('thumbnail_filename')) {
                 if (!empty($image)) {
