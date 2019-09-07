@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Coupon;
+use App\Store;
 use App\Image;
 use Validator;
 use DB;
@@ -50,7 +51,7 @@ class CouponController extends Controller
      */
     public function edit(Coupon $coupon=null)
     {
-        return view('admin.coupons.edit', ['coupon' => $coupon]);
+        return view('admin.coupons.edit', ['coupon' => $coupon, 'stores'=>Store::pluck('name', 'id')->toArray()]);
     }
 
     /*
@@ -62,21 +63,16 @@ class CouponController extends Controller
      */
     public function update(Request $request, Coupon $coupon=null)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:60',
-            'url' => 'required|url|string|max:60',
-            'description' => 'string|nullable|max:10000',
-        ]);
 
 //        $validator->sometimes(['thumbnail_filename'], 'required', function ($input) use ($request){
 //            return $request->method() == "PUT";
 //        });
 
-        if ($validator->fails()) {
-            return redirect()->back()
-                ->with(['status' => false, 'message' => 'データの更新に失敗しました。入力値を確認してください。'])
-                ->withErrors($validator->errors())->withInput();
-        }
+//        if ($validator->fails()) {
+//            return redirect()->back()
+//                ->with(['status' => false, 'message' => 'データの更新に失敗しました。入力値を確認してください。'])
+//                ->withErrors($validator->errors())->withInput();
+//        }
 
         DB::beginTransaction();
         try {
@@ -84,21 +80,15 @@ class CouponController extends Controller
             if (is_null($coupon)) {
                 $coupon = new Coupon;
             }
-
+            $coupon->store_id = $request->store_id;
             $coupon->name = $request->get('name');
-            $coupon->url = $request->get('url');
             $coupon->description = $request->get('description');
-            $coupon->prefecture_id = $request->get('prefecture_id') ?? 13;
-            $coupon->address1 = $request->get('address1') ?? "";
-            $coupon->address2 = $request->get('address2') ?? "";
-            $coupon->tel_num = $request->get('tel_num') ?? "";
-            $coupon->post_code = $request->get('post_code') ?? "";
-            $coupon->address_building = $request->get('address_building') ?? "";
-            $coupon->city_id = $request->get('city_id') ?? 111;
-            $coupon->lat = $request->get('lat') ?? 111;
-            $coupon->lon = $request->get('lon') ?? 111;
+            $coupon->url = "";
+            $coupon->qr_code = "";
             $coupon->deleted_at = null;
             $coupon->save();
+
+            
 
             if ($request->hasFile('thumbnail_filename')) {
                 if (!empty($image)) {
