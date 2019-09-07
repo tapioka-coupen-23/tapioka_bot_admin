@@ -20,6 +20,12 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], function () {
+    Route::get('/', function () {
+        return view('admin.dashboard-home');
+    });
+    Route::get('/users', function () {
+        return view('admin.dashboard-users-archive');
+    });
     Route::get('stores', 'StoreController@index')->name('stores');
     Route::get('stores/create', 'StoreController@create')->name('stores.create');
     Route::get('stores/{store}/edit', 'StoreController@edit')->name('stores.edit');
