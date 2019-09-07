@@ -1,63 +1,39 @@
 @extends('dashboard-layout')
 
 @section('content')
-<table class="table">
-    <thead>
+    <a href="{{ route('admin.coupons.create') }}" class="btn btn-success">作成</a>
+    <table class="table">
+        <thead>
         <tr>
             <th class="text-center">#</th>
-            <th>店舗名</th>
+            <th>ユーザー名</th>
+            {{--<th>クーポン</th>--}}
             <th>都道府県</th>
+            <th class="text-right">年齢</th>
+            <th class="text-right">性別</th>
         </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td class="text-center">1</td>
-            <td>Andrew Mike</td>
-            <td>Develop</td>
-            <td class="td-actions text-right">
-                <button type="button" rel="tooltip" class="btn btn-info btn-round">
-                    <i class="material-icons">person</i>
-                </button>
-                <button type="button" rel="tooltip" class="btn btn-success btn-round">
-                    <i class="material-icons">edit</i>
-                </button>
-                <button type="button" rel="tooltip" class="btn btn-danger btn-round">
-                    <i class="material-icons">close</i>
-                </button>
-            </td>
-        </tr>
-        <tr>
-            <td class="text-center">2</td>
-            <td>John Doe</td>
-            <td>Design</td>
-            <td class="td-actions text-right">
-                <button type="button" rel="tooltip" class="btn btn-info btn-round">
-                    <i class="material-icons">person</i>
-                </button>
-                <button type="button" rel="tooltip" class="btn btn-success btn-round">
-                    <i class="material-icons">edit</i>
-                </button>
-                <button type="button" rel="tooltip" class="btn btn-danger btn-round">
-                    <i class="material-icons">close</i>
-                </button>
-            </td>
-        </tr>
-        <tr>
-            <td class="text-center">3</td>
-            <td>Alex Mike</td>
-            <td>Design</td>
-            <td class="td-actions text-right">
-                <button type="button" rel="tooltip" class="btn btn-info btn-simple">
-                    <i class="material-icons">person</i>
-                </button>
-                <button type="button" rel="tooltip" class="btn btn-success btn-simple">
-                    <i class="material-icons">edit</i>
-                </button>
-                <button type="button" rel="tooltip" class="btn btn-danger btn-simple">
-                    <i class="material-icons">close</i>
-                </button>
-            </td>
-        </tr>
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach($coupons as $coupon)
+                <tr>
+                    <td class="text-center">1</td>
+                    <td>Andrew Mike</td>
+                    {{--<td>Develop</td>--}}
+                    <td>2013</td>
+                    <td class="text-right">&euro; 99,225</td>
+                    <td class="td-actions text-right">
+                        <button type="button" rel="tooltip" class="btn btn-info">
+                            <i class="material-icons">person</i>
+                        </button>
+                        <button type="button" rel="tooltip" class="btn btn-success">
+                            <a href="{{ route('admin.coupons.edit', [$coupon->id]) }}" class="text-white"><i class="material-icons">edit</i></a>
+                        </button>
+                        <button type="button" rel="tooltip" class="btn btn-danger">
+                            <i class="material-icons">close</i>
+                        </button>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 @endsection

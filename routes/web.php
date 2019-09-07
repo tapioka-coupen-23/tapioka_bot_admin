@@ -34,4 +34,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
     Route::get('stores/{store}/edit', 'StoreController@edit')->name('stores.edit');
     Route::patch('stores/{store?}', 'StoreController@update')->name('stores.update');
     Route::put('stores/{store?}', 'StoreController@update')->name('stores.create.exec');
+
+    Route::get('coupons', 'CouponController@index')->name('coupons');
+    Route::get('coupons/create', 'CouponController@create')->name('coupons.create');
+    Route::get('coupons/{coupon}/edit', 'CouponController@edit')->name('coupons.edit');
+    Route::patch('coupons/{coupon?}', 'CouponController@update')->name('coupons.update');
+    Route::put('coupons/{coupon?}', 'CouponController@update')->name('coupons.create.exec');
 });
