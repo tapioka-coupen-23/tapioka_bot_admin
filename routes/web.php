@@ -18,3 +18,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], function () {
+    Route::get('stores', 'StoreController@index')->name('stores');
+    Route::get('stores/create', 'StoreController@create')->name('stores.create');
+    Route::get('stores/{store}/edit', 'StoreController@edit')->name('stores.edit');
+    Route::patch('stores/{store?}', 'StoreController@update')->name('stores.update');
+    Route::put('stores/{store?}', 'StoreController@update')->name('stores.create.exec');
+});

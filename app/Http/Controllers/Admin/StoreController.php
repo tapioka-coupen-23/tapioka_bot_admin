@@ -18,7 +18,7 @@ class StoreController extends Controller
      */
     public function index(Request $request)
     {
-            return view('admin.stores.index', ['stores' => Store::query()->paginate()]);
+        return view('admin.stores.index', ['stores' => Store::query()->paginate()]);
     }
 
     /**

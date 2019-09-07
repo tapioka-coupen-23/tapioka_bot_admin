@@ -1,0 +1,1 @@
+<a href="{{ route('admin.stores.create') }}">作成</a>
