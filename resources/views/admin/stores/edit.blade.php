@@ -23,7 +23,7 @@
             </div>
             <div class="form-group">
                 <label class="col-3">説明</label>
-                <textarea class="form-control col-10" required>{{ !empty($store) ? old('description', $store->description) : old('description') }}</textarea>
+                <textarea  name="description" class="form-control col-10" required>{{ !empty($store) ? old('description', $store->description) : old('description') }}</textarea>
             </div>
             <button type="submit" class="btn btn-primary">保存</button>
         </form>

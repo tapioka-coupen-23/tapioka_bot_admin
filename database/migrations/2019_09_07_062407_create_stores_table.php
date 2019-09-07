@@ -27,7 +27,7 @@ class CreateStoresTable extends Migration
             $table->string("post_code");
             $table->string("url");
             $table->text('description');
-            $table->timestamp('deleted_at')->nullagle()->default(null);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

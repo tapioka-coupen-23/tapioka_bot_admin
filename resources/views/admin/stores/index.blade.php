@@ -7,21 +7,18 @@
         <thead>
         <tr>
             <th class="text-center">#</th>
-            <th>ユーザー名</th>
+            <th>店舗名</th>
             {{--<th>クーポン</th>--}}
-            <th>都道府県</th>
-            <th class="text-right">年齢</th>
-            <th class="text-right">性別</th>
+            <th>url</th>
         </tr>
         </thead>
         <tbody>
             @foreach($stores as $store)
                 <tr>
-                    <td class="text-center">1</td>
-                    <td>Andrew Mike</td>
+                    <td class="text-center">{{ $store->id }}</td>
+                    <td>{{ $store->name }}</td>
                     {{--<td>Develop</td>--}}
-                    <td>2013</td>
-                    <td class="text-right">&euro; 99,225</td>
+                    <td>{{ $store->url }}</td>
                     <td class="td-actions text-right">
                         <button type="button" rel="tooltip" class="btn btn-info">
                             <i class="material-icons">person</i>

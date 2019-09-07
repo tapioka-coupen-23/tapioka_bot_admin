@@ -27,7 +27,7 @@ Home
 </a>
             <ul class="nav-dropdown-items"> </ul>
           </li>
-          <li class="nav-item  "> <a class="nav-link " href="/admin/stores/create">
+          <li class="nav-item  "> <a class="nav-link " href="/admin/stores">
 SHOP
 </a>
             <ul class="nav-dropdown-items"> </ul>
