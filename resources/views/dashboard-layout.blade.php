@@ -10,8 +10,9 @@
 <body class="app header-fixed sidebar-md-show sidebar-fixed">
   <header class="app-header navbar"> <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" type="button" data-toggle="sidebar-show">
 <span class="navbar-toggler-icon"></span>
-</button> <a class="navbar-brand" href="https://coreui.io">
+</button> <a class="navbar-brand" href="/" style="font-size: 25px;">
 <!-- <img src="https://coreui.io/docs/assets/brand/logo.svg" width="89" height="25" alt="CoreUI Logo"> -->
+    Admin
 </a>
     <ul class="nav navbar-nav d-md-down-none">
       <!-- <li class="nav-item px-3"> <a class="btn btn btn-outline-warning" href="https://coreui.io/support/">Contact &amp; Support</a> </li> -->
@@ -21,22 +22,22 @@
     <div class="sidebar">
       <nav class="sidebar-nav ps">
         <ul class="nav">
-          <li class="nav-item  "> <a class="nav-link " href="https://coreui.io/docs/migration/">
+          <li class="nav-item  "> <a class="nav-link " href="/admin">
 Home
 </a>
             <ul class="nav-dropdown-items"> </ul>
           </li>
-          <li class="nav-item  "> <a class="nav-link " href="https://coreui.io/docs/migration/">
+          <li class="nav-item  "> <a class="nav-link " href="/admin/stores/create">
 SHOP
 </a>
             <ul class="nav-dropdown-items"> </ul>
           </li>
-          <li class="nav-item  "> <a class="nav-link " href="https://coreui.io/docs/migration/">
+          <li class="nav-item  "> <a class="nav-link " href="/admin/coupons">
 Coupon
 </a>
             <ul class="nav-dropdown-items"> </ul>
           </li>
-          <li class="nav-item  "> <a class="nav-link " href="https://coreui.io/docs/migration/">
+          <li class="nav-item  "> <a class="nav-link " href="/admin/users">
 Users
 </a>
             <ul class="nav-dropdown-items"> </ul>
