@@ -15,6 +15,19 @@ class CreateStoresTable extends Migration
     {
         Schema::create('stores', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
+            $table->tinyInteger('prefecture_id');
+            $table->bigInteger('city_id');
+            $table->string('address1');
+            $table->string('address2');
+            $table->string('address_building');
+            $table->double("lat");
+            $table->double("lon");
+            $table->string("tel_num");
+            $table->string("post_code");
+            $table->string("url");
+            $table->text('description');
+            $table->timestamp('deleted_at')->nullagle()->default(null);
             $table->timestamps();
         });
     }
