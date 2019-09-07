@@ -3,6 +3,7 @@
 @extends('dashboard-layout')
 
 @section('content')
+    <div class="container" style="background-color: white; margin-top: 100px; padding: 30px;">
     <h1>クーポン保存</h1>
     @if(!empty($coupon))
         <form action="{{ route('admin.coupons.update', [$coupon->id]) }}" method="post">
@@ -30,4 +31,5 @@
             </div>
             <button type="submit" class="btn btn-primary">保存</button>
         </form>
+    </div>
 @endsection

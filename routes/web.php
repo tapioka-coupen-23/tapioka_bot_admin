@@ -26,9 +26,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
     Route::get('/users', function () {
         return view('admin.dashboard-users-archive');
     });
-    Route::get('/coupons', function () {
-        return view('admin.coupons.index');
-    });
     Route::get('stores', 'StoreController@index')->name('stores');
     Route::get('stores/create', 'StoreController@create')->name('stores.create');
     Route::get('stores/{store}/edit', 'StoreController@edit')->name('stores.edit');
