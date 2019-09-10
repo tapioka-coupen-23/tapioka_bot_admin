@@ -1,6 +1,7 @@
 @extends('dashboard-layout')
 
 @section('content')
+    <h1>店舗一覧</h1>
     <a href="{{ route('admin.stores.create') }}" class="btn btn-success">作成</a>
 
     <table class="table">
@@ -18,11 +19,11 @@
                     <td class="text-center">{{ $store->id }}</td>
                     <td>{{ $store->name }}</td>
                     {{--<td>Develop</td>--}}
-                    <td>{{ $store->url }}</td>
+                    <td><a href="{{ $store->url }}" target="_blank">{{ $store->url }}</a></td>
                     <td class="td-actions text-right">
-                        <button type="button" rel="tooltip" class="btn btn-info">
-                            <i class="material-icons">person</i>
-                        </button>
+                        {{--<button type="button" rel="tooltip" class="btn btn-info">--}}
+                            {{--<i class="material-icons">person</i>--}}
+                        {{--</button>--}}
                         <button type="button" rel="tooltip" class="btn btn-success">
                             <a href="{{ route('admin.stores.edit', [$store->id]) }}" class="text-white"><i class="material-icons">edit</i></a>
                         </button>
