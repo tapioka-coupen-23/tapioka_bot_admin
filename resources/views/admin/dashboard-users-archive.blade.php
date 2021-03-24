@@ -1,6 +1,7 @@
 @extends('dashboard-layout')
 
 @section('content')
+<h4 class="c-grey-900 mB-20">ユーザー一覧</h4>
 <table class="table">
     <thead>
         <tr>
